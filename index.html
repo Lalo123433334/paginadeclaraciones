@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Declaración Patrimonial | Asesoría Profesional</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="shortcut icon" href="assets/iconos/logotipo.png" type="image/x-icon">
+</head>
+
+<body>
+
+    <div id="mensaje-exito" class="mensaje-exito">
+        ¡Tu información fue enviada con éxito! Me pondré en contacto contigo a la brevedad.
+    </div>
+
+    <header>
+        <nav>
+            <div class="logo">Asesoría Patrimonial</div>
+            <div class="nav-links">
+                <a href="#inicio">Inicio</a>
+                <a href="servicios.html">Servicios</a>
+                <a href="nosotros.html">Nosotros</a>
+            </div>
+        </nav>
+    </header>
+
+    <section id="inicio" class="hero">
+        <h1>Cumple con tu Declaración Patrimonial sin Errores</h1>
+        <p>Asesoría especializada para servidores públicos. Evita sanciones, protege tu información y presenta tu
+            declaración a tiempo.</p>
+        <a href="#contacto" class="btn">Solicitar Asesoría</a>
+    </section>
+
+    <section id="contacto" class="contact">
+        <div class="contact-container">
+            <h2>Pide información y cotización sin compromiso</h2>
+            <p style="text-align: center; margin-bottom: 2rem; color: var(--gray);">Déjame tus datos y me comunicaré
+                contigo hoy mismo para analizar tu caso bajo estricta confidencialidad.</p>
+
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="nombre">Nombre completo</label>
+                    <input type="text" id="nombre" name="nombre" required placeholder="Ej. Juan Pérez">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="email" name="email" required placeholder="tu@correo.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="telefono">Teléfono / WhatsApp</label>
+                    <input type="tel" id="telefono" name="telefono" required placeholder="443 000 0000">
+                </div>
+
+                <div class="form-group">
+                    <label for="servicio">¿Qué trámite necesitas?</label>
+                    <select id="servicio" name="servicio" required>
+                        <option value="" disabled selected>Selecciona una opción...</option>
+                        <option value="Modificacion">Declaración de Modificación (Mayo)</option>
+                        <option value="Inicial">Declaración Inicial</option>
+                        <option value="Conclusion">Declaración de Conclusión</option>
+                        <option value="Regularizacion">Regularización de Declaraciones Atrasadas</option>
+                        <option value="Dudas">Solo tengo dudas / Asesoría general</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="mensaje">Dependencia y comentarios adicionales (Opcional)</label>
+                    <textarea id="mensaje" name="mensaje" rows="4"
+                        placeholder="Menciona tu dependencia de gobierno o cualquier duda específica que tengas."></textarea>
+                </div>
+
+                <button type="submit" class="btn">Solicitar Ayuda</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Asesoría Patrimonial. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="js/envio_formulario.js"></script>
+    <a href="https://wa.me/4434926308?text=Hola,%20necesito%20ayuda%20con%20mi%20Declaración%20Patrimonial."
+        class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
+            class="whatsapp-icon">
+    </a>
+</body>
+
+</html>
