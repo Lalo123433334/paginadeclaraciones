@@ -6,6 +6,7 @@
     --light: #f8fafc;
     --gray: #64748b;
     --white: #ffffff;
+    --header-height: 70px;
 }
 
 * {
@@ -20,6 +21,8 @@ body {
     flex-direction: column;
     min-height: 100vh;
     background-color: var(--light);
+    overflow-x: hidden;
+    /* Evita scroll horizontal accidental */
 }
 
 /* --- Navegación --- */
@@ -30,29 +33,52 @@ header {
     width: 100%;
     top: 0;
     z-index: 1000;
+    min-height: 70px;
+    /* Cambiado de height a min-height */
+    height: auto;
 }
 
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 5%;
+    padding: 1rem;
+    /* Padding vertical en lugar de altura fija */
     max-width: 1200px;
     margin: 0 auto;
+    flex-wrap: flex;
+    /* Permite que los elementos bajen si no caben */
+    gap: 5px;
+    /* Espacio mínimo entre logo y enlaces */
 }
 
 .logo {
-    font-size: 1.5rem;
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    /* El logo también se encoge un poco */
     font-weight: bold;
     color: var(--primary);
+    flex: 1 1 auto;
+    /* Permite que el logo ocupe el espacio necesario */
+}
+
+.nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    /* Si los links no caben, se van a una segunda línea */
+    justify-content: flex-end;
+    gap: 15px;
+    /* Espacio constante entre enlaces */
 }
 
 .nav-links a {
     text-decoration: none;
     color: var(--dark);
-    margin-left: 2rem;
+    margin-left: 0;
+    /* Quitamos el margin-left fijo */
     font-weight: 500;
     transition: color 0.3s;
+    white-space: nowrap;
+    /* Evita que una sola palabra del menú se parta */
 }
 
 .nav-links a:hover,
@@ -65,62 +91,49 @@ nav {
 .informacion {
     padding: 0;
     width: 100%;
-    margin-top: 70px;
-    /* Para que no lo tape el header fijo */
+    margin-top: var(--header-height);
 }
 
 .carousel-item {
     width: 100%;
-    /* Definimos una relación de aspecto panorámica (ancho / alto) */
-    /* 3/1 significa que es 3 veces más ancha que alta */
     aspect-ratio: 3 / 1;
     overflow: hidden;
+    background-color: #ddd;
 }
 
 .carousel-item img {
     width: 100%;
-    height: 80%;
-    /* 'fill' obliga a la imagen a estirarse para cubrir el ancho total */
-    object-fit: fill;
+    height: 100%;
+    object-fit: cover;
+    /* Mantiene proporción sin estirar */
+    display: block;
 }
-
-/* Ajuste para que en móviles no se vea como una línea demasiado delgada */
-@media (max-width: 768px) {
-    .carousel-item {
-        aspect-ratio: 16 / 9;
-    }
-
-    .service-card {
-        align-items: center;
-        align-content: center;
-    }
-}
-
 
 /* --- Hero Section (Index) --- */
 .hero {
     background: linear-gradient(rgba(30, 41, 59, 0.8), rgba(30, 41, 59, 0.8)),
-        url('../assets/img/Declaraciones.jpg') center/cover;
-    height: 100vh;
+        url('../assets/img/Declaraciones.jpg') center/cover no-repeat;
+    min-height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     color: white;
-    padding: 0 20px;
-
+    padding: 2rem 5%;
 }
 
 .hero h1 {
-    font-size: 3.5rem;
+    font-size: clamp(2rem, 8vw, 3.5rem);
+    /* Tamaño fluido */
     margin-bottom: 1rem;
+    line-height: 1.2;
 }
 
 .hero p {
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 4vw, 1.2rem);
     margin-bottom: 2rem;
-    max-width: 600px;
+    max-width: 700px;
 }
 
 /* --- Botones --- */
@@ -133,68 +146,46 @@ nav {
     border-radius: 5px;
     font-weight: bold;
     font-size: 1.1rem;
-    transition: background 0.3s;
+    transition: background 0.3s, transform 0.2s;
     border: none;
     cursor: pointer;
 }
 
 .btn:hover {
     background-color: var(--primary-hover);
+    transform: translateY(-2px);
 }
 
 /* --- Servicios (Grid y Cards) --- */
 .services-hero {
-    background-color: transparent;
-    font-size: 20px;
-    padding: 2rem 1rem 1rem 1rem;
-    margin-bottom: 80px;
+    padding: 4rem 1rem 2rem;
     text-align: center;
-    height: 5rem;
-
-}
-
-.cta-services {
-    /**Dudas con los impuestos **/
-    font-size: 15px;
-    padding: 2rem;
-}
-
-.contactar-asesor {
-    font-size: 15px;
-}
-
-.pregunta-contacto {
-    font-size: 25px;
-    font-weight: bold;
 }
 
 .title-servicios {
     color: var(--primary);
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
     font-weight: bold;
     margin-bottom: 1rem;
-
 }
 
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
-    padding: 4rem;
-    max-width: 1800px;
-    font-size: 15px;
-
+    padding: 2rem 5%;
+    max-width: 1400px;
+    margin: 0 auto 4rem;
 }
 
 .service-card {
     background: white;
-    padding: 1rem;
+    padding: 2rem 1.5rem;
     border-radius: 12px;
-    margin: 5px;
     text-align: center;
     transition: transform 0.3s, box-shadow 0.3s;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     border-bottom: 4px solid var(--primary);
-
 }
 
 .service-card:hover {
@@ -203,8 +194,6 @@ nav {
 }
 
 .service-card .icon {
-    font-size: 1rem;
-    margin-bottom: 1rem;
     background: #eff6ff;
     width: 70px;
     height: 70px;
@@ -217,7 +206,7 @@ nav {
 
 /* --- Sección Nosotros --- */
 .sobre_nosotros {
-    padding: 2rem;
+    padding: 4rem 5%;
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -232,19 +221,26 @@ nav {
 }
 
 .sobre_nosotros img {
+    max-width: 100%;
+    height: auto;
     border-radius: 20px;
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    margin-top: 2rem;
 }
 
 /* --- Formulario de Contacto --- */
 .contact {
-    padding: 5rem 5%;
-    background-color: white;
+    padding: 4rem 5%;
+    background-color: var(--light);
 }
 
 .contact-container {
     max-width: 600px;
     margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 form {
@@ -256,6 +252,7 @@ form {
 .form-group {
     display: flex;
     flex-direction: column;
+    text-align: left;
 }
 
 input,
@@ -265,6 +262,7 @@ textarea {
     border: 1px solid #cbd5e1;
     border-radius: 5px;
     font-size: 1rem;
+    width: 100%;
 }
 
 input:focus,
@@ -275,20 +273,6 @@ textarea:focus {
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
-/* --- Mensaje de Éxito --- */
-.mensaje-exito {
-    background-color: #4CAF50;
-    color: white;
-    text-align: center;
-    padding: 1rem;
-    font-weight: bold;
-    display: none;
-    position: fixed;
-    top: 70px;
-    width: 100%;
-    z-index: 999;
-}
-
 /* --- WhatsApp Float --- */
 .whatsapp-float {
     position: fixed;
@@ -297,17 +281,13 @@ textarea:focus {
     bottom: 20px;
     right: 20px;
     background-color: #25d366;
-    border-radius: 50px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.3);
     z-index: 1000;
     transition: 0.3s;
-}
-
-.whatsapp-float img {
-    width: 35px;
 }
 
 .whatsapp-float:hover {
@@ -320,18 +300,57 @@ footer {
     background-color: var(--dark);
     color: white;
     text-align: center;
-    font-weight: bold;
-    padding: .5rem;
+    padding: 2rem 1rem;
+    margin-top: auto;
 }
 
-/* --- Responsive Menu --- */
+/* --- MEDIA QUERIES --- */
+
+/* Tablets y Móviles Grandes */
 @media (max-width: 768px) {
     .nav-links {
-        display: none;
-        /* Implementar menú hamburguesa si es necesario */
+        display: flex;
+        gap: 1rem;
     }
 
-    .hero h1 {
-        font-size: 2.5rem;
+    .nav-links a {
+        margin-left: 0;
+        font-size: 0.9rem;
+    }
+
+    .carousel-item {
+        aspect-ratio: 16 / 9;
+        /* Más alto en móviles */
+    }
+
+    .hero {
+        min-height: 60vh;
+    }
+}
+
+/* Móviles Pequeños */
+@media (max-width: 480px) {
+    nav {
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .nav-links a {
+        font-size: 0.6rem;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+
+    .contact-container {
+        padding: 1.5rem;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
     }
 }
