@@ -36,6 +36,7 @@ header {
     min-height: 70px;
     /* Cambiado de height a min-height */
     height: auto;
+
 }
 
 nav {
@@ -202,6 +203,12 @@ nav {
     justify-content: center;
     border-radius: 50%;
     margin: 0 auto 1.5rem;
+}
+
+#dudas {
+    padding: .5rem;
+    margin: 2rem;
+
 }
 
 /* --- Sección Nosotros --- */
